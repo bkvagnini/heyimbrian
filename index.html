@@ -1,0 +1,56 @@
+<?php 
+if(isset($_POST['submit'])){
+    $to = "email@example.com"; // this is your Email address
+    $from = $_POST['email']; // this is the sender's Email address
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Hey I'm Brian</title>
+<meta charset="utf-8">
+<meta name="description" content="heyimbrian - solo musical artist" />
+<meta name="keywords" content="recording, Tallahassee, music, rock" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/artistroster.css"> 
+</head>
+
+<body>
+<img src="images/HiB_logo_svg.svg" width="35%" height="35%" alt="hey Im Brian Logo large image" />
+<h2>Solo Musical Artist</h2>
+<p> I play a variety of instruments and occasionally write songs. </p>
+<hr />
+<h3> Let's connect:</h3>
+<p>email:<a href="mailto:brian@heyimbrian.com">brian@heyimbrian.com</a> </p>
+<p>FB: <a href="https://www.facebook.com/HeyImBrianMusic/">HeyImBrianMusic</a></p>
+<p>IG: <a href="https://www.instagram.com/heyimbrianmusic">@heyimbrianmusic</a></p>
+<p>YouTube: <a href="https://www.youtube.com/@heyimbrianmusic">@heyimbrianmusic</a></p>
+<p>Soundcloud: <a href="https://soundcloud.com/heyimbrian-4391891">heyimbrian</a></p> 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<!---
+<hr>
+<h2>Contact me</h2>
+<form action="" method="post">
+  First Name: <input type="text" name="first_name"><br>
+  Last Name: <input type="text" name="last_name"><br>
+  Email: <input type="text" name="email"><br>
+  Message:<br><textarea rows="5" name="message" cols="30"></textarea><br>
+  <input type="submit" name="submit" value="Submit">
+  </form>
+-->
+</body>
+</html>
+
